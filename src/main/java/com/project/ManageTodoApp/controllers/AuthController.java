@@ -16,7 +16,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-
 @ToString
 @Setter
 @Getter
@@ -26,6 +25,13 @@ class NewUserRequestBody {
     private String name;
 }
 
+@ToString
+@Setter
+@Getter
+class UserRequestBody {
+    private String email;
+    private String password;
+}
 
 @RestController
 @RequestMapping("/api")
@@ -34,17 +40,17 @@ public class AuthController {
     private UserService userService;
 
     @PostMapping("/users/signup")
-    public ResponseEntity<String> signup(@RequestBody NewUserRequestBody userSourcBody) {
+    public ResponseEntity<String> signup(@RequestBody NewUserRequestBody userSourceBody) {
         // System.out.println(userSourcBody);
         UserDto userDto = new UserDto();
-        userDto.setEmail(userSourcBody.getEmail());
-        userDto.setName(userSourcBody.getName());
-        userService.createUser(userDto, userSourcBody.getPassword());
-        return new ResponseEntity<>("Signup Successfull",HttpStatus.CREATED);
+        userDto.setEmail(userSourceBody.getEmail());
+        userDto.setName(userSourceBody.getName());
+        userService.createUser(userDto, userSourceBody.getPassword());
+        return new ResponseEntity<>("Signup Successfull", HttpStatus.CREATED);
     }
 
-    @GetMapping("/users/data")
-    public ResponseEntity<String> getData() {
-        return new ResponseEntity<>("Data can be accessed",HttpStatus.OK);
+    @GetMapping("/users/signin")
+    public ResponseEntity<String> login() {
+        return new ResponseEntity<>("Login Successful", HttpStatus.OK);
     }
 }
