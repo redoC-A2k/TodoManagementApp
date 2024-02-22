@@ -31,9 +31,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findUserByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with email : " + email));
+    }
+
+    @Override
+    public User findUserById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id : " + id));
+    }
+
+    @Override
     public User createUser(UserDto userDto, String password) {
         User user = UserMapper.mapUserDtoToEntity(userDto);
-        user.setRole("USER");
         user.setPassword(passwordEncoder.encode(password));
         user.setTodos(new ArrayList<Todo>());
         userRepository.save(user);

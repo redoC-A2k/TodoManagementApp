@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.ManageTodoApp.dto.TodoDto;
 import com.project.ManageTodoApp.entity.Todo;
+import com.project.ManageTodoApp.entity.User;
 import com.project.ManageTodoApp.exception.ResourceNotFoundException;
 import com.project.ManageTodoApp.mapper.TodoMapper;
 import com.project.ManageTodoApp.repository.TodoRepository;
@@ -15,10 +16,13 @@ import lombok.AllArgsConstructor;
 public class TodoServiceImpl implements TodoService {
 
     private final TodoRepository todoRepository;
+    private final UserService userService;
 
     @Override
-    public Todo createTodo(TodoDto todoDto) {
+    public Todo createTodo(TodoDto todoDto,Long userId) {
         Todo todo = TodoMapper.mapTododtoToEntity(todoDto);
+        User user = userService.findUserById(userId);
+        todo.setUser(user);
         return todoRepository.save(todo);
     }
 

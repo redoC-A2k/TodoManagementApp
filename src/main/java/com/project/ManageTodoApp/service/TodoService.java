@@ -4,7 +4,7 @@ import com.project.ManageTodoApp.dto.TodoDto;
 import com.project.ManageTodoApp.entity.Todo;
 
 public interface TodoService {
-    Todo createTodo(TodoDto todoDto);
+    Todo createTodo(TodoDto todoDto,Long userId);
     Todo getTodoById(Long id);
     TodoDto updateTodo(Long id, TodoDto todoDto);
     void deleteTodoById(Long id);
