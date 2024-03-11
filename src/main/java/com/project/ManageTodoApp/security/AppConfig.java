@@ -34,6 +34,7 @@ public class AppConfig {
                                 .authorizeHttpRequests(
                                                 (authorizeRequest) -> authorizeRequest.requestMatchers("/users/data")
                                                                 .authenticated())
+                                .authorizeHttpRequests((authorizeRequest) -> authorizeRequest.anyRequest().authenticated())
                                 .httpBasic(Customizer.withDefaults());
                 return httpSecurity.build();
         }

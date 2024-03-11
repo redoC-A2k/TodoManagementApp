@@ -1,5 +1,7 @@
 package com.project.ManageTodoApp.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.project.ManageTodoApp.dto.TodoDto;
@@ -9,6 +11,7 @@ import com.project.ManageTodoApp.exception.ResourceNotFoundException;
 import com.project.ManageTodoApp.mapper.TodoMapper;
 import com.project.ManageTodoApp.repository.TodoRepository;
 
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
 @Service
@@ -52,4 +55,11 @@ public class TodoServiceImpl implements TodoService {
         return null;
     }
 
+    @Transactional
+    @Override
+    public List<Todo> getTodosOfUser(Long userId) {
+        User user = userService.findUserById(userId);
+        List<Todo> todos = user.getTodos();
+        return todos;
+    }
 }

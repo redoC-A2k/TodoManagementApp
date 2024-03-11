@@ -1,6 +1,8 @@
 package com.project.ManageTodoApp.controllers;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,8 +31,7 @@ public class TodoController {
     }
 
     @GetMapping("/todo")
-    public ResponseEntity<?> getTodos(@PathVariable String userId) {
-        // return ResponseEntity.ok(todoService.getTodos(userId));
-        return ResponseEntity.ok("get data");
+    public ResponseEntity<?> getTodos(@RequestAttribute Long userId) {
+        return new ResponseEntity<>(todoService.getTodosOfUser(userId),HttpStatus.OK);
     }
 }
