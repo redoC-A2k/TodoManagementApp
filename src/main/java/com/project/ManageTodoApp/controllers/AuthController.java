@@ -15,6 +15,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @ToString
 @Setter
@@ -49,8 +51,5 @@ public class AuthController {
         return new ResponseEntity<>("Signup Successfull", HttpStatus.CREATED);
     }
 
-    @GetMapping("/users/signin")
-    public ResponseEntity<String> login() {
-        return new ResponseEntity<>("Login Successful", HttpStatus.OK);
-    }
+    
 }
