@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    # url: jdbc:mysql://localhost:3306/manage_todo_app_db
+    # username: afshan
+    # password: ${DB_PASSWORD}
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    properties:
+      hibernate:
+        '[format_sql]': true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQLDialect
+  config:
+    import: optional:file:.env
+
+logging:
+  level:
+    '[org.hibernate.SQL]': trace
+    '[orm.jdbc.bind]' : trace
+    '[org.springframework.security]': trace
