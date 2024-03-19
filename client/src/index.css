@@ -152,53 +152,38 @@ button.disabled {
 }
 
 /* Signin */
-#signin {
-  max-width: 400px;
-  margin: 0 auto;
-  text-align: center;
-}
 
 #signin h2 {
   margin-bottom: 20px;
 }
 
 /* Signup */
-#signup {
-  max-width: 400px;
-  margin: 0 auto;
-  text-align: center;
-}
 
 #signup h2 {
   margin-bottom: 20px;
 }
 
-/* Home */
-#home {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-#home h2 {
-  text-align: center;
-}
-
-#home ul {
-  list-style: none;
-  padding: 0;
-}
-
-#home li {
-  margin-bottom: 10px;
-}
-
 /* Add Todo */
-#add-todo {
-  max-width: 400px;
+#todo {
   margin: 0 auto;
   text-align: center;
 }
 
-#add-todo h2 {
+#todo h2 {
   margin-bottom: 20px;
+}
+
+/* Todos */
+#todos div.todos div.card h6{
+  font-size: 1.6rem;
+}
+
+#todos div.todos div.card div.card-body h5 div {
+  justify-content: space-between;
+  display: flex;
+}
+
+#todos div.todos div.card div.card-body h5 div i{
+  cursor: pointer;
+  margin-right: 1.5rem;
 }
