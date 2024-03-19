@@ -17,7 +17,7 @@ const Redirect = ({ signin, setSignin }: { signin: boolean, setSignin: React.Dis
 
             const urlencoded = new URLSearchParams();
             urlencoded.append("client_id", "todo");
-            urlencoded.append("redirect_uri", "http://localhost:3000/redirect");
+            urlencoded.append("redirect_uri", `${process.env.REACT_APP_FRONTEND}/redirect`);
             urlencoded.append("grant_type", "authorization_code");
             urlencoded.append("code", code);
             urlencoded.append("code_verifier", verifier);

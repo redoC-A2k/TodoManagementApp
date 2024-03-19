@@ -36,6 +36,14 @@ function base64URLEncode(str: String | Buffer) {
         .replace(/=/g, '');
 }
 
+function generateCodeVerifier(len:number):String{
+    let text = "";
+    let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~";
+    for (let i = 0; i < len; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    return text;
+}
+
 async function sha256(str: string) {
     const encoder = new TextEncoder();
     const data = encoder.encode(str);
@@ -43,18 +51,16 @@ async function sha256(str: string) {
     const digest = await crypto.subtle.digest('SHA-256', data);
     let arr = new Uint8Array(digest);
     let hash = btoa(String.fromCharCode(...arr))
-        .replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_')
-    console.log(hash)
+    console.log("unencoded hash ",hash)
     return hash;
 }
 
 export async function redirect() {
-    let verifier = base64URLEncode("afshanahmedkhanfaizullahahmedkhanirshadahmedkhanshabinakhan");
+    let verifier = base64URLEncode(generateCodeVerifier(48));
     let hash = await sha256(verifier)
-
     let challenge = base64URLEncode(hash);
     // console.log("verifier = ",verifier,"challenge = ",challenge)
     localStorage.setItem('challenge', challenge);
     localStorage.setItem('verifier', verifier);
-    window.location.href = (`${process.env.REACT_APP_BACKEND}/oauth2/authorize?client_id=todo&response_type=code&redirect_uri=http://localhost:3000/redirect&code_challenge_method=S256&code_challenge=${challenge}`)
+    window.location.href = (`${process.env.REACT_APP_BACKEND}/oauth2/authorize?client_id=todo&response_type=code&redirect_uri=${process.env.REACT_APP_FRONTEND}/redirect&code_challenge_method=S256&code_challenge=${challenge}`)
 }

@@ -104,7 +104,6 @@ public class AppConfig {
 	}
 	// }
 
-	// http://localhost:8080/oauth2/authorize?client_id=todo&response_type=code&redirect_uri=http://localhost:3000/redirect&scope=openid&code_challenge_method=S256&code_challenge=zJv7Zphgpvbkhk6CbkS-_2Wl_VGvThPjJiNdRiNR96g
 	// without scope
 	// http://localhost:8080/oauth2/authorize?client_id=todo&response_type=code&redirect_uri=http://localhost:3000/redirect&code_challenge_method=S256&code_challenge=zJv7Zphgpvbkhk6CbkS-_2Wl_VGvThPjJiNdRiNR96g
 
