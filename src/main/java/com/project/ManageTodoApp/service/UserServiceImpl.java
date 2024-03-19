@@ -1,11 +1,13 @@
 package com.project.ManageTodoApp.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.project.ManageTodoApp.dto.UserDto;
 import com.project.ManageTodoApp.entity.Todo;
@@ -37,6 +39,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public User findUserById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id : " + id));
@@ -51,4 +54,13 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    @Override
+    public List<Todo> deleteTodoById(Long userId, Long todoId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id : " + userId));
+        List<Todo> todos = user.getTodos();
+        todos.removeIf(t -> t.getId().equals(todoId));
+        userRepository.save(user);
+        return todos;
+    }
 }

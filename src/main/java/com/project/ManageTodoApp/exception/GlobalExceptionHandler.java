@@ -14,11 +14,6 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<String>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(BadCredentialsException.class)
-    public ResponseEntity<String> badCredentialsExceptionHandler(BadCredentialsException ex) {
-        return new ResponseEntity<String>("Invalid token", HttpStatus.UNAUTHORIZED);
-    }
-
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> fallbackExceptionHandler(Exception ex) {
         return new ResponseEntity<String>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);

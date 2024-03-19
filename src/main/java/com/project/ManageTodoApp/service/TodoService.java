@@ -3,12 +3,14 @@ package com.project.ManageTodoApp.service;
 import java.util.List;
 
 import com.project.ManageTodoApp.dto.TodoDto;
+
+import com.project.ManageTodoApp.dto.NewTodoDto;
 import com.project.ManageTodoApp.entity.Todo;
 
 public interface TodoService {
-    Todo createTodo(TodoDto todoDto,Long userId);
+    Todo createTodo(NewTodoDto newTodoDto,Long userId);
     Todo getTodoById(Long id);
     TodoDto updateTodo(Long id, TodoDto todoDto);
-    void deleteTodoById(Long id);
+    List<Todo> deleteTodoById(Long userId, Long id);
     List<Todo> getTodosOfUser(Long userId);
 }
